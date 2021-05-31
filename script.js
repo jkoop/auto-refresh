@@ -1,6 +1,8 @@
 var h = new Headers();
 h.append('pragma', 'no-cache');
 h.append('cache-control', 'no-cache');
+var i = document.querySelector('[src*="auto-refresh"]');
+if(i !== undefined) i = i.getAttribute("data-interval") * 1000;
 
 setInterval(()=>{
     fetch(document.location.href, {
@@ -11,4 +13,4 @@ setInterval(()=>{
             location.reload(true);
         }
     });
-}, 5000);
+}, i ?? 5000);
